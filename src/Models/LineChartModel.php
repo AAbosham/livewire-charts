@@ -20,6 +20,8 @@ class LineChartModel extends BaseChartModel
 
     public $onPointClickEventName;
 
+    public $customAnnotations;
+
     public function __construct()
     {
         parent::__construct();
@@ -31,6 +33,15 @@ class LineChartModel extends BaseChartModel
         $this->data = collect();
 
         $this->markers = collect();
+
+        $this->customAnnotations = null;
+    }
+
+    public function customAnnotations($annotations)
+    {
+        $this->customAnnotations = $annotations;
+
+        return $this;
     }
 
     public function multiLine()
@@ -111,6 +122,7 @@ class LineChartModel extends BaseChartModel
             'onPointClickEventName' => $this->onPointClickEventName,
             'data' => $this->data->toArray(),
             'markers' => $this->markers->toArray(),
+            'customAnnotations' => $this->customAnnotations
         ]);
     }
 
@@ -125,5 +137,7 @@ class LineChartModel extends BaseChartModel
         $this->data = collect(data_get($array, 'data', []));
 
         $this->markers = collect(data_get($array, 'markers', []));
+
+        $this->customAnnotations = data_get($array, 'customAnnotations', []);
     }
 }
