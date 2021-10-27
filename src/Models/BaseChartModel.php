@@ -32,6 +32,20 @@ class BaseChartModel
         $this->initColors();
     }
 
+    public function setToolBarVisible()
+    {
+        $this->toolBarShow = true;
+
+        return $this;
+    }
+    
+    public function setZoomVisible()
+    {
+        $this->zoomEnabled = true;
+
+        return $this;
+    }
+
     public function reactiveKey()
     {
         return md5(json_encode($this->toArray()));

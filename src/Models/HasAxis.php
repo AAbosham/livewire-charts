@@ -16,6 +16,13 @@ trait HasAxis
         $this->yAxis = $this->defaultYAxis();
     }
 
+    public function customYaxis($format)
+    {
+        $this->yAxis = $format;
+
+        return $this;
+    }
+
     private function defaultXAxis()
     {
         return [

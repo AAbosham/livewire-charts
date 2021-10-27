@@ -35,6 +35,10 @@ class LineChartModel extends BaseChartModel
         $this->markers = collect();
 
         $this->customAnnotations = null;
+
+        $this->toolBarShow = false;
+
+        $this->zoomEnabled = false;
     }
 
     public function customAnnotations($annotations)
@@ -122,7 +126,9 @@ class LineChartModel extends BaseChartModel
             'onPointClickEventName' => $this->onPointClickEventName,
             'data' => $this->data->toArray(),
             'markers' => $this->markers->toArray(),
-            'customAnnotations' => $this->customAnnotations
+            'customAnnotations' => $this->customAnnotations,
+            'toolBarShow' => $this->toolBarShow,
+            'zoomEnabled' => $this->zoomEnabled
         ]);
     }
 
@@ -139,5 +145,9 @@ class LineChartModel extends BaseChartModel
         $this->markers = collect(data_get($array, 'markers', []));
 
         $this->customAnnotations = data_get($array, 'customAnnotations', []);
+
+        $this->toolBarShow = data_get($array, 'toolBarShow', []);
+
+        $this->zoomEnabled = data_get($array, 'zoomEnabled', []);
     }
 }

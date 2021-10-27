@@ -61,6 +61,19 @@ class ColumnChartModel extends BaseChartModel
         $this->isStacked = false;
 
         $this->data = collect();
+
+        $this->customAnnotations = null;
+
+        $this->toolBarShow = false;
+
+        $this->zoomEnabled = false;
+    }
+
+    public function customAnnotations($annotations)
+    {
+        $this->customAnnotations = $annotations;
+
+        return $this;
     }
 
     public function multiColumn()
@@ -190,6 +203,9 @@ class ColumnChartModel extends BaseChartModel
             'xaxis' => $this->xaxis,
             'yaxis' => $this->yaxis,
             'horizontal' => $this->horizontal,
+            'customAnnotations' => $this->customAnnotations,
+            'toolBarShow' => $this->toolBarShow,
+            'zoomEnabled' => $this->zoomEnabled
             ]);
     }
 
@@ -216,5 +232,11 @@ class ColumnChartModel extends BaseChartModel
         $this->isStacked = data_get($array, 'isStacked', false);
 
         $this->data = collect(data_get($array, 'data', []));
+
+        $this->customAnnotations = data_get($array, 'customAnnotations', []);
+
+        $this->toolBarShow = data_get($array, 'toolBarShow', []);
+
+        $this->zoomEnabled = data_get($array, 'zoomEnabled', []);
     }
 }
